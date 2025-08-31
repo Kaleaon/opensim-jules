@@ -10,7 +10,7 @@ config_version=5
 
 [autoload]
 
-network="*res://network.gd"
+OpenSimClient="*res://opensim_client.gd"
 
 [application]
 

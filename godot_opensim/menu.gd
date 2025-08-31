@@ -1,16 +1,10 @@
 extends Control
 
-@onready var network = get_tree().get_root().get_node("network")
-@onready var ip_address_edit = $VBoxContainer/IPAddressEdit
+func _on_ConnectButton_pressed():
+    var first_name = "Kaleaon"
+    var last_name = "Engineer"
+    var password = "R@nossian9897"
+    # The correct login URI for OSGrid.
+    var login_uri = "http://login.osgrid.org/"
 
-func _on_StartServerButton_pressed():
-    network.start_server()
-    get_tree().change_scene_to_file("res://main.tscn")
-
-func _on_StartClientButton_pressed():
-    var ip = ip_address_edit.text
-    if ip.is_valid_ip_address():
-        network.start_client(ip)
-        get_tree().change_scene_to_file("res://main.tscn")
-    else:
-        print("Invalid IP address entered.")
+    OpenSimClient.login_to_grid(first_name, last_name, password, login_uri)

@@ -13,27 +13,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -50.0
+margin_top = -20.0
 margin_right = 100.0
-margin_bottom = 50.0
-
-[node name="StartServerButton" type="Button" parent="VBoxContainer"]
-margin_right = 200.0
 margin_bottom = 20.0
-text = "Start Server"
 
-[node name="IPAddressEdit" type="LineEdit" parent="VBoxContainer"]
-margin_top = 24.0
+[node name="ConnectButton" type="Button" parent="VBoxContainer"]
 margin_right = 200.0
-margin_bottom = 48.0
-placeholder_text = "Enter Server IP"
-text = "127.0.0.1"
+margin_bottom = 40.0
+text = "Login to OSGrid"
 
-[node name="StartClientButton" type="Button" parent="VBoxContainer"]
-margin_top = 52.0
-margin_right = 200.0
-margin_bottom = 72.0
-text = "Start Client"
-
-[connection signal="pressed" from="VBoxContainer/StartServerButton" to="." method="_on_StartServerButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/StartClientButton" to="." method="_on_StartClientButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ConnectButton" to="." method="_on_ConnectButton_pressed"]
