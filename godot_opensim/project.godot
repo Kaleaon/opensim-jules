@@ -32,3 +32,10 @@ window/size/window_height_override=0
 
 renderer/rendering_method="forward_plus"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[input]
+
+move_forward=[Object(InputEventKey,"keycode":87)]
+move_backward=[Object(InputEventKey,"keycode":83)]
+move_left=[Object(InputEventKey,"keycode":65)]
+move_right=[Object(InputEventKey,"keycode":68)]
