@@ -487,7 +487,6 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             //     and we must create a copy of the native shape since they are never shared.
             if (physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
             {
-                // TODO: decide when the native shapes should be freed. Check in Dereference?
                 ret = BSShapeNative.GetReference(pPhysicsScene, pPrim, BSPhysicsShapeType.SHAPE_BOX, FixedShapeKey.KEY_BOX);
             }
             else
@@ -504,6 +503,12 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             {
                 this.DecrementReference();
                 physicsScene.DetailLog("{0},BSShapeMesh.Dereference,shape={1}", BSScene.DetailLogZero, this);
+                if (referenceCount <= 0 && physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
+                {
+                    physicsScene.DetailLog("{0},BSShapeMesh.Dereference,deleteNativeShape,shape={1}", BSScene.DetailLogZero, this);
+                    physicsScene.PE.DeleteCollisionShape(physicsScene.World, physShapeInfo);
+                    physShapeInfo.Clear();
+                }
                 // TODO: schedule aging and destruction of unused meshes.
             }
         }
@@ -682,7 +687,6 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             //     and we must create a copy of the native shape since they are never shared.
             if (physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
             {
-                // TODO: decide when the native shapes should be freed. Check in Dereference?
                 ret = BSShapeNative.GetReference(pPhysicsScene, pPrim, BSPhysicsShapeType.SHAPE_BOX, FixedShapeKey.KEY_BOX);
             }
             else
@@ -699,6 +703,12 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             {
                 this.DecrementReference();
                 physicsScene.DetailLog("{0},BSShapeHull.Dereference,shape={1}", BSScene.DetailLogZero, this);
+                if (referenceCount <= 0 && physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
+                {
+                    physicsScene.DetailLog("{0},BSShapeHull.Dereference,deleteNativeShape,shape={1}", BSScene.DetailLogZero, this);
+                    physicsScene.PE.DeleteCollisionShape(physicsScene.World, physShapeInfo);
+                    physShapeInfo.Clear();
+                }
                 // TODO: schedule aging and destruction of unused meshes.
             }
         }
@@ -1270,7 +1280,6 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             //     and we must create a copy of the native shape since they are never shared.
             if (physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
             {
-                // TODO: decide when the native shapes should be freed. Check in Dereference?
                 ret = BSShapeNative.GetReference(pPhysicsScene, pPrim, BSPhysicsShapeType.SHAPE_BOX, FixedShapeKey.KEY_BOX);
             }
             else
@@ -1288,6 +1297,12 @@ namespace OpenSim.Region.PhysicsModule.BulletS
             {
                 this.DecrementReference();
                 physicsScene.DetailLog("{0},BSShapeGImpact.Dereference,shape={1}", BSScene.DetailLogZero, this);
+                if (referenceCount <= 0 && physShapeInfo.HasPhysicalShape && physShapeInfo.isNativeShape)
+                {
+                    physicsScene.DetailLog("{0},BSShapeGImpact.Dereference,deleteNativeShape,shape={1}", BSScene.DetailLogZero, this);
+                    physicsScene.PE.DeleteCollisionShape(physicsScene.World, physShapeInfo);
+                    physShapeInfo.Clear();
+                }
                 // TODO: schedule aging and destruction of unused meshes.
             }
         }
